@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hello-app
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    path: apps/stage/hello-app
+    repoURL: https://github.com/noy5277/cp-interview-deployments
+    targetRevision: HEAD
+
+  destination:
+    server: https://26266F4CCC9802442E568EB2E3B0FC30.gr7.us-east-2.eks.amazonaws.com
+    namespace: hello-app
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+``
