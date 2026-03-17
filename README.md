@@ -20,6 +20,7 @@ cp-interview-deployments/
 │   └── stage/
 │       └── hello-app.yaml   # ArgoCD Application manifest
 │
+|── stage.yaml
 └── README.md
 ```
 
@@ -40,6 +41,12 @@ Which path in the repo to watch
 Which cluster to deploy to
 Which namespace to create/use
 Automated sync, pruning, and self-healing policies
+
+## stage.yaml
+
+ArgoCD Application manifest that defines:
+
+All the application that related to stage environment
 
 ## How to Deploy ##
 ```
