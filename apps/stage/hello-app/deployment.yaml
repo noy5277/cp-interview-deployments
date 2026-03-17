@@ -22,7 +22,7 @@ spec:
         fsGroup: 1000
       containers:
         - name: hello-node
-          image: 128955061512.dkr.ecr.us-east-2.amazonaws.com/hello-world:1c87f7c7a0738e651359a8d7bbdfaa46803f649f
+          image: 128955061512.dkr.ecr.us-east-2.amazonaws.com/hello-world:cd4cf37523ad89d5b09e8c00dbe3942043feb031
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
