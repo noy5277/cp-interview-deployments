@@ -1,0 +1,21 @@
+apiVersion: secrets-store.csi.x-k8s.io/v1
+kind: SecretProviderClass
+metadata:
+  name: hello-app-secrets-stage
+  namespace: hello-app
+spec:
+  provider: aws
+  parameters:
+    region: us-east-2
+    objects: |
+      - objectName: staging/hello-app           
+        objectType: secretsmanager
+        jmesPath:
+          - path: hello-app_ROOT_PASSWORD       
+            objectAlias: hello-approotpassword  
+  secretObjects:
+    - secretName: hello-app-secrets-stage
+      type: Opaque
+      data:
+        - objectName: hello-approotpassword    
+          key: hello-approotpassword           
