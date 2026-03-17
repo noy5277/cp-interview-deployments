@@ -20,6 +20,7 @@ cp-interview-deployments/
 │   └── stage/
 │       └── hello-app.yaml   # ArgoCD Application manifest
 │
+|── infra.yaml
 |── stage.yaml
 └── README.md
 ```
@@ -60,6 +61,13 @@ client -> ALB -> Ingress -> service -> pod
 ```
 curl -H "Host: hello-world.cp-interview.com" http://k8s-helloapp-hellonod-a624d878d7-809775282.us-east-2.elb.amazonaws.com
 ```
+
+# Crossplan deployment #
+Argocd application infra provision vpc resources
+- vpc
+- subnets
+- internetGateway
+- routetable
 
 ## Contributors: ##
 noy5277@gmail.com
