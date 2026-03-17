@@ -11,6 +11,16 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hello-node
+                port:
+                  name: http
+
     - host: hello-world.cp-interview.com
       http:
         paths:
@@ -21,3 +31,5 @@ spec:
                 name: hello-node
                 port:
                   name: http
+
+          
