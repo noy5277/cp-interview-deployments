@@ -1,0 +1,12 @@
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: InternetGateway
+metadata:
+  name: eks-main-igw
+spec:
+  forProvider:
+    region: us-west-1
+    tags:
+      Name: eks-main-igw
+    vpcIdRef:
+      name: eks-main

@@ -1,0 +1,27 @@
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: EIP
+metadata:
+  name: main-nat
+spec:
+  forProvider:
+    region: us-west-1
+    vpc: true
+    tags:
+      Name: main-nat
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: NATGateway
+metadata:
+  name: main-nat
+spec:
+  forProvider:
+    region: us-west-1
+    connectivityType: public
+    allocationIdRef:
+      name: main-nat
+    subnetIdSelector:
+      matchLabels:
+        name: main-public-us-west-1a
+    tags:
+      Name: main-nat

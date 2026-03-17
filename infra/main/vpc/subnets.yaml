@@ -1,0 +1,72 @@
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  name: main-private-us-west-1a
+  labels:
+    name: main-private-us-west-1a
+spec:
+  forProvider:
+    availabilityZone: us-west-1a
+    cidrBlock: 10.10.1.0/24
+    region: us-west-1
+    tags:
+      Name: main-private-us-west-1a
+      kubernetes.io/role/internal-elb: "1"
+      kubernetes.io/cluster/main: "owned"
+    vpcIdRef:
+      name: eks-main
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  name: main-private-us-west-1b
+  labels:
+    name: main-private-us-west-1b
+spec:
+  forProvider:
+    availabilityZone: us-west-1b
+    cidrBlock: 10.10.2.0/24
+    region: us-west-1
+    tags:
+      Name: main-private-us-west-1b
+      kubernetes.io/role/internal-elb: "1"
+      kubernetes.io/cluster/main: "owned"
+    vpcIdRef:
+      name: eks-main
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  name: main-public-us-west-1a
+  labels:
+    name: main-public-us-west-1a
+spec:
+  forProvider:
+    availabilityZone: us-west-1a
+    cidrBlock: 10.10.3.0/24
+    region: us-west-1
+    tags:
+      Name: main-public-us-west-1a
+      kubernetes.io/role/elb: "1"
+      kubernetes.io/cluster/main: "owned"
+    vpcIdRef:
+      name: eks-main
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  name: main-public-us-west-1b
+  labels:
+    name: main-public-us-west-1b
+spec:
+  forProvider:
+    availabilityZone: us-west-1b
+    cidrBlock: 10.10.4.0/24
+    region: us-west-1
+    tags:
+      Name: main-public-us-west-1b
+      kubernetes.io/role/elb: "1"
+      kubernetes.io/cluster/main: "owned"
+    vpcIdRef:
+      name: eks-main

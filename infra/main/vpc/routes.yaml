@@ -1,0 +1,98 @@
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTable
+metadata:
+  name: main-private
+spec:
+  forProvider:
+    region: us-west-1
+    tags:
+      Name: main-private
+    vpcIdRef:
+      name: eks-main
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Route
+metadata:
+  name: main-private
+spec:
+  forProvider:
+    destinationCidrBlock: 0.0.0.0/0
+    natGatewayIdRef:
+      name: main-nat
+    region: us-west-1
+    routeTableIdRef:
+      name: main-private
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTable
+metadata:
+  name: main-public
+spec:
+  forProvider:
+    region: us-west-1
+    tags:
+      Name: main-public
+    vpcIdRef:
+      name: eks-main
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Route
+metadata:
+  name: main-public
+spec:
+  forProvider:
+    destinationCidrBlock: 0.0.0.0/0
+    gatewayIdRef:
+      name: eks-main-igw
+    region: us-west-1
+    routeTableIdRef:
+      name: main-public
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTableAssociation
+metadata:
+  name: main-private-us-west-1a
+spec:
+  forProvider:
+    region: us-west-1
+    routeTableIdRef:
+      name: main-private
+    subnetIdRef:
+      name: main-private-us-west-1a
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTableAssociation
+metadata:
+  name: main-private-us-west-1b
+spec:
+  forProvider:
+    region: us-west-1
+    routeTableIdRef:
+      name: main-private
+    subnetIdRef:
+      name: main-private-us-west-1b
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTableAssociation
+metadata:
+  name: main-public-us-west-1a
+spec:
+  forProvider:
+    region: us-west-1
+    routeTableIdRef:
+      name: main-public
+    subnetIdRef:
+      name: main-public-us-west-1a
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTableAssociation
+metadata:
+  name: main-public-us-west-1b
+spec:
+  forProvider:
+    region: us-west-1
+    routeTableIdRef:
+      name: main-public
+    subnetIdRef:
+      name: main-public-us-west-1b
