@@ -53,5 +53,13 @@ All the application that related to stage environment
 kubectl apply -f stage.yaml
 ```
 
+## Access to application
+Curl command you need to hit the Kubernetes Ingress endpoint while overriding the Host header
+client -> ALB -> Ingress -> service -> pod
+
+```
+curl -H "Host: hello-world.cp-interview.com" http://k8s-helloapp-hellonod-a624d878d7-809775282.us-east-2.elb.amazonaws.com
+```
+
 ## Contributors: ##
 noy5277@gmail.com
